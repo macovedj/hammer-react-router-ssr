@@ -8,15 +8,21 @@ const server = spawn("npm", ["start"], {
   stdio: ["ignore", "pipe", "pipe"],
 });
 
+let logs = "";
+server.stdout.on("data", (chunk) => { logs += chunk; });
+server.stderr.on("data", (chunk) => { logs += chunk; });
+
 async function waitForServer() {
   for (let attempt = 0; attempt < 60; attempt++) {
+    if (server.exitCode !== null) throw new Error(`Server exited early.\n${logs}`);
+
     try {
       const response = await fetch(origin);
       if (response.ok) return;
     } catch {}
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
-  throw new Error("Timed out waiting for the fixture server");
+  throw new Error(`Timed out waiting for the fixture server.\n${logs}`);
 }
 
 try {

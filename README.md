@@ -27,8 +27,13 @@ The fixture uses no database, external API, remote font, or required environment
 npm install
 npm run dev
 npm run typecheck
-npm run build
 npm run test:smoke
+```
+
+The smoke command creates fresh production output before starting its isolated test server. To build and run the production server manually:
+
+```sh
+npm run build
 npm start
 ```
 
