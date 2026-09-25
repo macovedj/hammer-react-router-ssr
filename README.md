@@ -2,6 +2,11 @@
 
 A deterministic React Router Framework Mode fixture for testing browser-hosted development environments such as edit-test.dev.
 
+## Requirements
+
+- Node.js 20.19 or newer on the 20.x line, or Node.js 22.12 or newer
+- npm
+
 ## Coverage
 
 - Node SSR and React hydration
